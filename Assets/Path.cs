@@ -33,12 +33,17 @@ public class Path : MonoBehaviour
         return closestWaypoint;
     }
     public List<Vector3> GetWaypoints(bool reversed=false){
+        string logId = "Path_GetWaypoints::";
         List<Vector3> waypointsToReturn = new List<Vector3>();
         int waypointsCount = waypoints.Count;
-        for (int i = reversed?waypointsCount:0; reversed ? i>0 :i<waypointsCount; i=reversed?i-1:i+1) {
+        if(waypointsCount==0){
+            Debug.Log(logId+"There are no waypoints => return null");
+            return null;
+        }
+        for (int i = 0; i < waypointsCount; i++) {
             waypointsToReturn.Add(waypoints[i].transform.position);
         }
-        if(reversed){
+        if(reversed) {
             waypointsToReturn.Reverse();
         }
         return waypointsToReturn;

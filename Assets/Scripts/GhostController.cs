@@ -11,6 +11,7 @@ public class GhostController : MonoBehaviour
     public float goalDistance = 0.5f;
     public bool ReachedTargetValue;
     public int currentWaypointIndex;
+    public bool fetchedWaypoints;
     public NavMeshAgent agent;
     List<AgentController> agentsFollowing = new List<AgentController>();
     private void Awake() {
@@ -41,7 +42,8 @@ public class GhostController : MonoBehaviour
             path = closestPath;
         }
         bool reversed = Random.Range(0, 2) == 0;
-        waypoints = path.GetWaypoints();
+        waypoints = path.GetWaypoints(reversed);
+        fetchedWaypoints = true;
         SetAgentTargetPosition(ClosestWaypoint());
         targetPos = TargetPosition;
         StartCoroutine(HandleTargetRoutine());
@@ -84,7 +86,7 @@ public class GhostController : MonoBehaviour
         if(ReachedTarget) {
             SetAgentTargetPosition(NextWaypoint());
         }
-        agent.speed = IsAgentCloseBy ? 5 : 0;
+        agent.speed = IsAgentCloseBy ? 5 : 1;
         ReachedTargetValue = ReachedTarget;
         RemainingDistance = agent.remainingDistance;
     }
