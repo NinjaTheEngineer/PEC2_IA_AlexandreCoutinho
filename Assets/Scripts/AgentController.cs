@@ -35,41 +35,56 @@ public class AgentController : MonoBehaviour {
             }
             targetGhost = closestGhost;
         }
+        agent.speed = Random.Range(1,1.33f);
+        targetGhost?.AddFollowingAgent(this);
         StartCoroutine(CloseToGhostRoutine());
     }
     bool IsAtTargetLocation => TargetPosition!=null?(transform.position - TargetPosition).sqrMagnitude < GoalDistance:false;
-    public Vector3 TargetPosition => agent.destination;
-
+    Vector3 _targetPosition;
+    public Vector3 TargetPosition {
+        get => _targetPosition;
+        private set {
+            if(value==null || value==_targetPosition) {
+                return;
+            }
+            _targetPosition = value;
+            agent.destination = _targetPosition;
+        } 
+    } 
+    bool isMouseTargetLocation = false;
     private void Update() {
         if (Input.GetMouseButtonDown(0)) {
             RaycastHit hit;
             Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(camRay, out hit, 100)) {
-                SetAgentTargetPosition(hit.point);
+                SetTargetPosition(hit.point);
+                isMouseTargetLocation = true;
             }
         }
-        if(IsAtTargetLocation){
-            SetAgentTargetPosition(targetGhost.transform.position);
+        if(isMouseTargetLocation && !IsAtTargetLocation){
+            return;
         }
+        isMouseTargetLocation = false;
+        SetTargetPosition(targetGhost.transform.position);
     }
-    private IEnumerator CloseToGhostRoutine(){
+    private IEnumerator CloseToGhostRoutine() {
         while(true) {
-            yield return new WaitForSecondsRealtime(Random.Range(0.1f,0.2f));
+            yield return new WaitForSecondsRealtime(Random.Range(0.1f,0.3f));
             if(!targetGhost) {
                 continue;
             }
             float distanceFromGhostSqr = (transform.position-targetGhost.transform.position).sqrMagnitude;
             IsCloseToGhost = distanceFromGhostSqr < GhostTargetDistance;
-            Debug.Log("TargetDistance="+GhostTargetDistance+" distanceFromGhostSqr="+distanceFromGhostSqr);
+           //Debug.Log("TargetDistance="+GhostTargetDistance+" distanceFromGhostSqr="+distanceFromGhostSqr);
         }
 
     }
 
-    private void SetAgentTargetPosition(Vector3 target){
+    private void SetTargetPosition(Vector3 target) {
         string logId = "SetAgentTargetPosition::";
-        if(target==null){
+        if(target==null) {
             System.Console.WriteLine(logId + "Target is null");
         }
-        agent.destination = target;
+        TargetPosition = target;
     }
 }

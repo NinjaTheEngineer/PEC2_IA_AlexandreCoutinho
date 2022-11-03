@@ -6,7 +6,6 @@ using System.Linq;
 public class Path : MonoBehaviour
 {
     [SerializeField]List<Transform> waypoints;
-    [SerializeField]int currentWaypointIndex;
     private void Awake() {
         waypoints = GetComponentsInChildren<Transform>().ToList();
         waypoints.RemoveAt(0);
@@ -29,26 +28,19 @@ public class Path : MonoBehaviour
             if(!closestWaypoint || minDistanceSqr>distanceFromWaypointSqr){
                 minDistanceSqr = distanceFromWaypointSqr;
                 closestWaypoint = waypoints[i];
-                currentWaypointIndex = i;
             }
         }
         return closestWaypoint;
     }
-    public Transform NextWaypoint{
-        get{
-            int waypointsCount = waypoints.Count;
-            if(waypointsCount==0){
-                Debug.Log("No waypoints => return null");
-                return null;
-            }
-            currentWaypointIndex = currentWaypointIndex==waypointsCount?0:currentWaypointIndex+1;
-            if(waypointsCount<currentWaypointIndex){
-                return waypoints[waypointsCount];
-            }
-            Debug.Log("currentWaypointIdex="+currentWaypointIndex+",waypointsCount="+waypointsCount);
-
-            return waypoints[currentWaypointIndex];
+    public List<Vector3> GetWaypoints(bool reversed=false){
+        List<Vector3> waypointsToReturn = new List<Vector3>();
+        int waypointsCount = waypoints.Count;
+        for (int i = reversed?waypointsCount:0; reversed ? i>0 :i<waypointsCount; i=reversed?i-1:i+1) {
+            waypointsToReturn.Add(waypoints[i].transform.position);
         }
+        if(reversed){
+            waypointsToReturn.Reverse();
+        }
+        return waypointsToReturn;
     }
-    public Transform CurrentWaypoint => waypoints[currentWaypointIndex];
 }
