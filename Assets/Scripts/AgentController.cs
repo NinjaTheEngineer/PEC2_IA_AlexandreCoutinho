@@ -53,7 +53,15 @@ public class AgentController : MonoBehaviour {
     } 
     bool isMouseTargetLocation = false;
     private void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        HandleMouseClick();
+        if(isMouseTargetLocation && !IsAtTargetLocation){
+            return;
+        }
+        isMouseTargetLocation = false;
+        SetTargetPosition(targetGhost.transform.position);
+    }
+    private void HandleMouseClick() {
+        if (Input.GetMouseButtonDown(1)) {
             RaycastHit hit;
             Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(camRay, out hit, 100)) {
@@ -61,11 +69,6 @@ public class AgentController : MonoBehaviour {
                 isMouseTargetLocation = true;
             }
         }
-        if(isMouseTargetLocation && !IsAtTargetLocation){
-            return;
-        }
-        isMouseTargetLocation = false;
-        SetTargetPosition(targetGhost.transform.position);
     }
     private IEnumerator CloseToGhostRoutine() {
         while(true) {

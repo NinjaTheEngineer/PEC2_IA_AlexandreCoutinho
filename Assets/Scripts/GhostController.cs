@@ -24,7 +24,7 @@ public class GhostController : MonoBehaviour
             GameObject[] paths = GameObject.FindGameObjectsWithTag("Path");
             int pathsCount = paths.Length;
             if(pathsCount==0){
-                Debug.Log("No paths for " + this);
+                Debug.Log("No paths for Ghost");
             }
             Path closestPath = null;
             float closestPathDistanceSqr=0;
