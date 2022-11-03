@@ -12,6 +12,8 @@ public class GhostController : MonoBehaviour
     public bool ReachedTargetValue;
     public int currentWaypointIndex;
     public bool fetchedWaypoints;
+    public float maxSpeed = 4f;
+    public float minSpeed = 1f;
     public NavMeshAgent agent;
     List<AgentController> agentsFollowing = new List<AgentController>();
     private void Awake() {
@@ -86,7 +88,7 @@ public class GhostController : MonoBehaviour
         if(ReachedTarget) {
             SetAgentTargetPosition(NextWaypoint());
         }
-        agent.speed = IsAgentCloseBy ? 5 : 1;
+        agent.speed = IsAgentCloseBy ? maxSpeed : minSpeed;
         ReachedTargetValue = ReachedTarget;
         RemainingDistance = agent.remainingDistance;
     }

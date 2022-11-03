@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4060391802964908305}
   - component: {fileID: 4060391802964908307}
   - component: {fileID: 4060391802964908300}
+  - component: {fileID: 1205660042}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Ghost
@@ -124,5 +125,23 @@ MonoBehaviour:
   ReachedTargetValue: 0
   currentWaypointIndex: 0
   fetchedWaypoints: 0
+  maxSpeed: 3
+  minSpeed: 1
   agent: {fileID: 4060391802964908307}
   RemainingDistance: 0
+--- !u!208 &1205660042
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4060391802964908306}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.89, y: 0.65, z: 0.89}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
