@@ -7,6 +7,8 @@ public class AgentController : MonoBehaviour {
     public float GoalDistance = 2f;
     public float GhostTargetDistance = 5f;
     public bool IsCloseToGhost;
+    public float maxSpeed = 3f;
+    public float minSpeed = 2f;
     NavMeshAgent agent;
     [SerializeField]GhostController targetGhost;
     Vector3 currentLocation;
@@ -35,7 +37,7 @@ public class AgentController : MonoBehaviour {
             }
             targetGhost = closestGhost;
         }
-        agent.speed = Random.Range(1,1.33f);
+        agent.speed = Random.Range(minSpeed,maxSpeed);
         targetGhost?.AddFollowingAgent(this);
         StartCoroutine(CloseToGhostRoutine());
     }
@@ -53,7 +55,15 @@ public class AgentController : MonoBehaviour {
     } 
     bool isMouseTargetLocation = false;
     private void Update() {
-        if (Input.GetMouseButtonDown(0)) {
+        HandleMouseClick();
+        if(isMouseTargetLocation && !IsAtTargetLocation){
+            return;
+        }
+        isMouseTargetLocation = false;
+        SetTargetPosition(targetGhost.transform.position);
+    }
+    private void HandleMouseClick() {
+        if (Input.GetMouseButtonDown(1)) {
             RaycastHit hit;
             Ray camRay = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(camRay, out hit, 100)) {
@@ -61,11 +71,6 @@ public class AgentController : MonoBehaviour {
                 isMouseTargetLocation = true;
             }
         }
-        if(isMouseTargetLocation && !IsAtTargetLocation){
-            return;
-        }
-        isMouseTargetLocation = false;
-        SetTargetPosition(targetGhost.transform.position);
     }
     private IEnumerator CloseToGhostRoutine() {
         while(true) {

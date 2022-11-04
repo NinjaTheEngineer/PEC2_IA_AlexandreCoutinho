@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class GhostController : MonoBehaviour
-{
+[SelectionBase]
+public class GhostController : MonoBehaviour {
     public List<Vector3> waypoints;
     public Path path;
     public Vector3 targetPos; 
@@ -12,6 +12,8 @@ public class GhostController : MonoBehaviour
     public bool ReachedTargetValue;
     public int currentWaypointIndex;
     public bool fetchedWaypoints;
+    public float maxSpeed = 4f;
+    public float minSpeed = 1f;
     public NavMeshAgent agent;
     List<AgentController> agentsFollowing = new List<AgentController>();
     private void Awake() {
@@ -24,7 +26,7 @@ public class GhostController : MonoBehaviour
             GameObject[] paths = GameObject.FindGameObjectsWithTag("Path");
             int pathsCount = paths.Length;
             if(pathsCount==0){
-                Debug.Log("No paths for " + this);
+                Debug.Log("No paths for Ghost");
             }
             Path closestPath = null;
             float closestPathDistanceSqr=0;
@@ -69,13 +71,13 @@ public class GhostController : MonoBehaviour
     }
     public Vector3 NextWaypoint() {
         int waypointsCount = waypoints.Count;
-        Debug.Log("currentWaypointIndex="+currentWaypointIndex+" waypointsCount="+waypointsCount);
+        //Debug.Log("currentWaypointIndex="+currentWaypointIndex+" waypointsCount="+waypointsCount);
         if(waypointsCount==0) {
             Debug.Log("No waypoints => return targetPosition");
             return targetPos;
         }
         currentWaypointIndex = currentWaypointIndex==waypointsCount-1 ? 0 : currentWaypointIndex+1;
-        Debug.Log("currentWaypointIndex="+currentWaypointIndex+" waypointsCount="+waypointsCount);
+        //Debug.Log("currentWaypointIndex="+currentWaypointIndex+" waypointsCount="+waypointsCount);
         if(waypointsCount<currentWaypointIndex) {
             return waypoints[waypointsCount];
         }
@@ -86,7 +88,7 @@ public class GhostController : MonoBehaviour
         if(ReachedTarget) {
             SetAgentTargetPosition(NextWaypoint());
         }
-        agent.speed = IsAgentCloseBy ? 5 : 1;
+        agent.speed = IsAgentCloseBy ? maxSpeed : minSpeed;
         ReachedTargetValue = ReachedTarget;
         RemainingDistance = agent.remainingDistance;
     }
