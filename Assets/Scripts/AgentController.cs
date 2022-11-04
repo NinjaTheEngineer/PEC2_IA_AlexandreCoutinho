@@ -7,6 +7,8 @@ public class AgentController : MonoBehaviour {
     public float GoalDistance = 2f;
     public float GhostTargetDistance = 5f;
     public bool IsCloseToGhost;
+    public float maxSpeed = 3f;
+    public float minSpeed = 2f;
     NavMeshAgent agent;
     [SerializeField]GhostController targetGhost;
     Vector3 currentLocation;
@@ -35,7 +37,7 @@ public class AgentController : MonoBehaviour {
             }
             targetGhost = closestGhost;
         }
-        agent.speed = Random.Range(1,1.33f);
+        agent.speed = Random.Range(minSpeed,maxSpeed);
         targetGhost?.AddFollowingAgent(this);
         StartCoroutine(CloseToGhostRoutine());
     }

@@ -125,8 +125,8 @@ MonoBehaviour:
   ReachedTargetValue: 0
   currentWaypointIndex: 0
   fetchedWaypoints: 0
-  maxSpeed: 3
-  minSpeed: 1
+  maxSpeed: 5
+  minSpeed: 1.5
   agent: {fileID: 4060391802964908307}
   RemainingDistance: 0
 --- !u!208 &1205660042
@@ -136,7 +136,7 @@ NavMeshObstacle:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4060391802964908306}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Shape: 0
   m_Extents: {x: 0.89, y: 0.65, z: 0.89}

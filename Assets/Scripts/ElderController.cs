@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [SelectionBase]
-public class GhostController : MonoBehaviour {
+public class ElderController : StateMachine {
     public List<Vector3> waypoints;
     public Path path;
     public Vector3 targetPos; 
@@ -12,9 +12,8 @@ public class GhostController : MonoBehaviour {
     public bool ReachedTargetValue;
     public int currentWaypointIndex;
     public bool fetchedWaypoints;
-    public float maxSpeed = 4f;
-    public float minSpeed = 1f;
-    public NavMeshAgent agent;
+    private NavMeshAgent agent;
+    public Bench NearbyBench;
     List<AgentController> agentsFollowing = new List<AgentController>();
     private void Awake() {
         if(!agent) {
@@ -50,6 +49,24 @@ public class GhostController : MonoBehaviour {
         targetPos = TargetPosition;
         StartCoroutine(HandleTargetRoutine());
     }
+
+    public void DeactivateAgent() {
+        agent.enabled = false;
+    }
+
+    public void ActivateAgent() {
+        agent.enabled = true;
+    }
+
+    public void SetAgentSpeed(float agentSpeed) {
+        if(agent.speed == agentSpeed){
+            Debug.Log("ElderController_SetAgentSpeed:: speed="+agent.speed+" is equal to new speed=" + agentSpeed+", returning");
+            return;
+        }
+        Debug.Log("ElderController_SetAgentSpeed:: Changing from speed="+agent.speed+" to " + agentSpeed);
+        agent.speed = agentSpeed;
+    }
+
     public Vector3 ClosestWaypoint(){
         string logId = "GhostController_ClosestWaypoint::";
         int waypointsCount = waypoints.Count;
@@ -69,70 +86,74 @@ public class GhostController : MonoBehaviour {
         }
         return closestWaypoint;
     }
+    public bool orderedPath = false;
     public Vector3 NextWaypoint() {
-        int waypointsCount = waypoints.Count;
-        //Debug.Log("currentWaypointIndex="+currentWaypointIndex+" waypointsCount="+waypointsCount);
-        if(waypointsCount==0) {
-            Debug.Log("No waypoints => return targetPosition");
-            return targetPos;
+        if(!orderedPath){
+            //Without Order
+            int waypointsCount = waypoints.Count;
+            Debug.Log("currentWaypointIndex="+currentWaypointIndex+" waypointsCount="+waypointsCount);
+            if(waypointsCount==0) {
+                Debug.Log("No waypoints => return targetPosition");
+                return targetPos;
+            }
+            currentWaypointIndex = Random.Range(0, waypointsCount);
+            Debug.Log("currentWaypointIndex="+currentWaypointIndex+" waypointsCount="+waypointsCount);
+            return waypoints[currentWaypointIndex];
+        } else {
+            //With Order
+            int waypointsCount = waypoints.Count;
+            Debug.Log("currentWaypointIndex="+currentWaypointIndex+" waypointsCount="+waypointsCount);
+            if(waypointsCount==0) {
+                Debug.Log("No waypoints => return targetPosition");
+                return targetPos;
+            }
+            currentWaypointIndex = currentWaypointIndex==waypointsCount-1 ? 0 : currentWaypointIndex+1;
+            Debug.Log("currentWaypointIndex="+currentWaypointIndex+" waypointsCount="+waypointsCount);
+            if(waypointsCount<currentWaypointIndex) {
+                return waypoints[waypointsCount];
+            }
+            return waypoints[currentWaypointIndex];
         }
-        currentWaypointIndex = currentWaypointIndex==waypointsCount-1 ? 0 : currentWaypointIndex+1;
-        //Debug.Log("currentWaypointIndex="+currentWaypointIndex+" waypointsCount="+waypointsCount);
-        if(waypointsCount<currentWaypointIndex) {
-            return waypoints[waypointsCount];
-        }
-
-        return waypoints[currentWaypointIndex];
     }
     private void Update() {
-        if(ReachedTarget) {
-            SetAgentTargetPosition(NextWaypoint());
+        if(!ActiveState){
+            return;
         }
-        agent.speed = IsAgentCloseBy ? maxSpeed : minSpeed;
-        ReachedTargetValue = ReachedTarget;
-        RemainingDistance = agent.remainingDistance;
+        ActiveState.Update();
     }
     private IEnumerator HandleTargetRoutine() {
         while(true) {
             yield return new WaitForSecondsRealtime(Random.Range(0.1f,0.2f));
            //Debug.Log("TargetDistance="+GhostTargetDistance+" distanceFromGhostSqr="+distanceFromGhostSqr);
         }
-
     }
-    public float RemainingDistance;
-    public void AddFollowingAgent(AgentController agent) {
-        if(!agent) {
-            Debug.Log("Agent is null => returning");
+    
+    private void OnTriggerEnter(Collider other) {
+        NearbyBench = other.gameObject.GetComponent<Bench>();
+        if(!NearbyBench) {
+            Debug.Log("OnCollisionEnter bench is null => returning");
             return;
         }
-        if(!agentsFollowing.Contains(agent)) {
-            agentsFollowing.Add(agent);
-        }
     }
-    public bool IsAgentCloseBy{
-        get{
-            int agentsFollowingCount = agentsFollowing.Count;
-            if(agentsFollowingCount==0){
-                return false;
-            }  
-            bool isAgentClose = false;
-            for (int i = 0; i < agentsFollowingCount; i++) {
-                if(agentsFollowing[i].IsCloseToGhost){
-                    isAgentClose = true;
-                }
-            }
-            return isAgentClose;
+    private void OnTriggerExit(Collider other) {
+        Bench bench = other.gameObject.GetComponent<Bench>();
+        if(!bench) {
+            Debug.Log("OnCollisionExit bench is null => returning");
         }
+        NearbyBench = null;
     }
-
     public Vector3 TargetPosition => agent.destination;
-    private bool ReachedTarget{
+    public bool ReachedTarget{
         get{
             float remaningDistance = agent.remainingDistance;
             return remaningDistance <= goalDistance;
         }
     } 
-    private void SetAgentTargetPosition(Vector3 target){
+    public void SetElderSitPosition(Transform sit) {
+        transform.position = sit.position;
+        transform.rotation = sit.rotation;
+    }
+    public void SetAgentTargetPosition(Vector3 target){
         string logId = "SetAgentTargetPosition::";
         if(target==null){
             System.Console.WriteLine(logId + "Target is null");

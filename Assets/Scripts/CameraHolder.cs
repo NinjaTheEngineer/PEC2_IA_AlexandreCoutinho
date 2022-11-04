@@ -5,7 +5,10 @@ using UnityEngine;
 public class CameraHolder : MonoBehaviour {
     private Vector3 previousPosition;
     private Camera mainCamera; 
+    public float scrollSpeed = 10;
     public float rotationSpeed = 10f;
+    public float minFov = 20f;
+    public float maxFov = 80f;
     private void Awake() {
         if(!mainCamera) {
             mainCamera = GetComponentInChildren<Camera>();
@@ -13,9 +16,22 @@ public class CameraHolder : MonoBehaviour {
     }
     private void Update() {
         HandleCameraRotation();
+        HandleCameraZoom();
     }
     float xRotation = 0.0f;
     float yRotation = 0.0f;
+    private void HandleCameraZoom() {
+        if(mainCamera.orthographic) {
+            mainCamera.orthographicSize -= Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
+        } else {
+            mainCamera.fieldOfView -= Input.GetAxis("Mouse ScrollWheel") * scrollSpeed;
+            if(mainCamera.fieldOfView <= minFov) {
+                mainCamera.fieldOfView = minFov;
+            } else if(mainCamera.fieldOfView >= maxFov) {
+                mainCamera.fieldOfView = maxFov;
+            }
+        }
+    }
     private void HandleCameraRotation() {
         
         if(Input.GetMouseButtonDown(0)){
