@@ -3,22 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ElderStopState : State {
-    public float agentSpeed = 0f;
+    public float minTimeStopped = 2;
+    public float maxTimeStopped = 6;
     ElderController elderController;
     ElderWanderState wanderState;
-    public ElderStopState(StateMachine stateMachine) : base(stateMachine) {
-        if(!stateMachine) {
-            throw new System.ArgumentNullException("stateMachine");
-        }
-        elderController = (ElderController)stateMachine;
-    }
     private void Awake() {
         elderController = GetComponent<ElderController>();
         wanderState = GetComponent<ElderWanderState>();
     }
     public override IEnumerator Start() {
-        elderController.SetAgentSpeed(agentSpeed);
-        yield return new WaitForSeconds(Random.Range(2, 6));
+        elderController.AgentController.SetAgentSpeed(0);
+        yield return new WaitForSeconds(Random.Range(minTimeStopped, maxTimeStopped));
         elderController.SetState(wanderState);
     }
     public override void Update() {

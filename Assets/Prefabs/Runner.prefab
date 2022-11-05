@@ -107,8 +107,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4432583375344630453}
   - component: {fileID: 4432583375344630450}
-  - component: {fileID: 4432583375344630451}
   - component: {fileID: 947901082}
+  - component: {fileID: 3659176267676484747}
   m_Layer: 0
   m_Name: Runner
   m_TagString: Untagged
@@ -153,24 +153,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4432583375344630451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4432583375344630448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 489213bddf4622b4eaa594b055166c97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GoalDistance: 5
-  GhostTargetDistance: 50
-  IsCloseToGhost: 0
-  maxSpeed: 3
-  minSpeed: 2
-  targetGhost: {fileID: 0}
 --- !u!208 &947901082
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -187,6 +169,27 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &3659176267676484747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4432583375344630448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e1c1f4e04898b418da46f27a279995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GoalDistance: 2
+  RightClickToMove: 1
+  MaxSpeed: 2.5
+  MinSpeed: 2
+  DefaultSpeed: 0
+  HasFollowers: 0
+  targetAgent: {fileID: 0}
+  AgentSafeTargetDistance: 15
+  AgentNearby: 0
 --- !u!1 &4432583375535032906
 GameObject:
   m_ObjectHideFlags: 0

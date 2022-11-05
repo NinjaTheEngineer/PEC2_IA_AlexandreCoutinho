@@ -12,8 +12,7 @@ GameObject:
   - component: {fileID: 4060391802964908302}
   - component: {fileID: 4060391802964908305}
   - component: {fileID: 4060391802964908307}
-  - component: {fileID: 4060391802964908300}
-  - component: {fileID: 1205660042}
+  - component: {fileID: 5688275480347415723}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Ghost
@@ -106,7 +105,7 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4060391802964908300
+--- !u!114 &5688275480347415723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,33 +114,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4060391802964908306}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2b461ac6565b08498365b7d5590db2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 28e80a5839b49ca4aa623c34cfbe3e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GoalDistance: 2
+  RightClickToMove: 1
+  MaxSpeed: 3
+  MinSpeed: 2
+  DefaultSpeed: 5
+  HasFollowers: 1
   waypoints: []
   path: {fileID: 0}
   targetPos: {x: 0, y: 0, z: 0}
-  goalDistance: 0.5
-  ReachedTargetValue: 0
   currentWaypointIndex: 0
   fetchedWaypoints: 0
-  maxSpeed: 5
-  minSpeed: 1.5
-  agent: {fileID: 4060391802964908307}
-  RemainingDistance: 0
---- !u!208 &1205660042
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4060391802964908306}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Shape: 0
-  m_Extents: {x: 0.89, y: 0.65, z: 0.89}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: 0, y: 0, z: 0}
-  m_TimeToStationary: 0.5

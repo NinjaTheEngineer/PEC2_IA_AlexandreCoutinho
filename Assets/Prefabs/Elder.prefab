@@ -187,6 +187,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8341108706737358765}
   - component: {fileID: 8341108706737358762}
+  - component: {fileID: -4519547739355392008}
   - component: {fileID: 8583827257811638146}
   - component: {fileID: 9075345130876429795}
   - component: {fileID: 811768863076640598}
@@ -236,6 +237,30 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-4519547739355392008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8341108706737358760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28e80a5839b49ca4aa623c34cfbe3e9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GoalDistance: 1
+  RightClickToMove: 1
+  MaxSpeed: 1.2
+  MinSpeed: 0.5
+  _defaultSpeed: 0
+  HasFollowers: 0
+  waypoints: []
+  path: {fileID: 0}
+  targetPos: {x: 0, y: 0, z: 0}
+  currentWaypointIndex: 0
+  fetchedWaypoints: 0
+  randomPathing: 1
 --- !u!114 &8583827257811638146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,15 +275,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ActiveState: {fileID: 0}
   waypoints: []
+  AgentController: {fileID: 0}
   path: {fileID: 0}
   targetPos: {x: 0, y: 0, z: 0}
   goalDistance: 0.5
   ReachedTargetValue: 0
   currentWaypointIndex: 0
-  fetchedWaypoints: 0
   NearbyBench: {fileID: 0}
-  orderedPath: 0
-  RemainingDistance: 0
 --- !u!114 &9075345130876429795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,8 +308,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agentSpeed: 0
-  minSitTime: 0
-  maxSitTime: 0
+  minSitTime: 7
+  maxSitTime: 20
 --- !u!114 &5742588129643214535
 MonoBehaviour:
   m_ObjectHideFlags: 0
