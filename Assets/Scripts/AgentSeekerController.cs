@@ -10,10 +10,10 @@ public class AgentSeekerController : AgentController {
     public override void Awake() {
         base.Awake();
         if(!targetAgent){
-            SetTargetGhost();
+            SetTargetAgent();
         }
         targetAgent?.AddFollowingAgent(this);
-        StartCoroutine(CloseToGhostRoutine());   
+        StartCoroutine(CloseToTargetAgentRoutine());   
     }
     public override void Update() {
         base.Update();
@@ -22,7 +22,7 @@ public class AgentSeekerController : AgentController {
             SetTargetPosition(targetAgent.transform.position);
         }
     }
-    private void SetTargetGhost() {
+    private void SetTargetAgent() {
         GameObject[] ghosts = GameObject.FindGameObjectsWithTag("Ghost");
             int ghostsCount = ghosts.Length;
             if(ghostsCount==0){
@@ -44,7 +44,7 @@ public class AgentSeekerController : AgentController {
             }
             targetAgent = closestGhost;
     }
-    private IEnumerator CloseToGhostRoutine() {
+    private IEnumerator CloseToTargetAgentRoutine() {
         while(true) {
             yield return new WaitForSecondsRealtime(Random.Range(0.1f,0.3f));
             if(!targetAgent) {

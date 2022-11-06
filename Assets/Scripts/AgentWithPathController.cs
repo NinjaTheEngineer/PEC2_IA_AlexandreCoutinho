@@ -27,7 +27,6 @@ public class AgentWithPathController : AgentController {
             SetTargetPosition(NextWaypoint());
         }
     }
-
     private void SetPath() {
         GameObject[] paths = GameObject.FindGameObjectsWithTag("Path");
             int pathsCount = paths.Length;
@@ -94,5 +93,4 @@ public class AgentWithPathController : AgentController {
             return waypoints[currentWaypointIndex]; 
         }
     }
-
 }

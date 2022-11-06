@@ -16,10 +16,4 @@ public class ElderStopState : State {
         yield return new WaitForSeconds(Random.Range(minTimeStopped, maxTimeStopped));
         elderController.SetState(wanderState);
     }
-    public override void Update() {
-        base.Update();
-    }
-    public override IEnumerator Exit() {
-        return base.Exit();
-    }
 }

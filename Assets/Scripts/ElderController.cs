@@ -9,21 +9,19 @@ public class ElderController : StateMachine {
     public Bench NearbyBench;
     List<AgentController> agentsFollowing = new List<AgentController>();
     private void Awake() {
-        if(AgentController==null){
+        if(AgentController==null) {
             AgentController = GetComponent<AgentWithPathController>();
         }
     }
     private void Start() {
         AgentController.SetTargetPosition(AgentController.ClosestWaypoint());
     }
-
     private void Update() {
-        if(!ActiveState){
+        if(!ActiveState) {
             return;
         }
         ActiveState.Update();
     }
-    
     private void OnTriggerEnter(Collider other) {
         NearbyBench = other.gameObject.GetComponent<Bench>();
         if(!NearbyBench) {

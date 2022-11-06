@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 [SelectionBase]
 public class AgentController : MonoBehaviour {
+    #region Variables
     public float GoalDistance = 2f;
     public bool RightClickToMove = true;
     public float MaxSpeed = 3f;
@@ -57,15 +58,15 @@ public class AgentController : MonoBehaviour {
             _targetPosition = value;
             agent.destination = _targetPosition;
         } 
-    } 
+    }
+    #endregion 
     public virtual void Awake() {
         if(!agent){
             agent = GetComponent<NavMeshAgent>();
         }
         DefaultSpeed = DefaultSpeed==0?Random.Range(MinSpeed,MaxSpeed):DefaultSpeed;
         agent.speed = DefaultSpeed;
-    }
-    
+    } 
     public virtual void Update() {
         if(!Active){
             return;

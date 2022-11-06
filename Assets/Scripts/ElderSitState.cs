@@ -26,10 +26,4 @@ public class ElderSitState : State {
         elderController.AgentController.ActivateAgent();
         elderController.SetState(wanderState);
     }
-    public override void Update() {
-        base.Update();
-    }
-    public override IEnumerator Exit() {
-        return base.Exit();
-    }
 }

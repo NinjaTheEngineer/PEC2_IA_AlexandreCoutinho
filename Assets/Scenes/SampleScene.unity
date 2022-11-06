@@ -451,6 +451,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4060391802964908305, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4060391802964908306, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
       propertyPath: m_Name
       value: RunnerGhosts
@@ -2764,14 +2768,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2078760540}
     m_Modifications:
-    - target: {fileID: 811768863076640598, guid: 6c8cdc1b3c2d22d44adc0ab061968018, type: 3}
-      propertyPath: maxSitTime
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 811768863076640598, guid: 6c8cdc1b3c2d22d44adc0ab061968018, type: 3}
-      propertyPath: minSitTime
-      value: 7
-      objectReference: {fileID: 0}
     - target: {fileID: 8341108706737358760, guid: 6c8cdc1b3c2d22d44adc0ab061968018, type: 3}
       propertyPath: m_Name
       value: Elder (5)
@@ -5620,6 +5616,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4060391802964908305, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4060391802964908306, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
       propertyPath: m_Name
       value: RunnerGhosts
@@ -5766,6 +5766,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060391802964908303, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060391802964908305, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4060391802964908306, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
@@ -6140,6 +6144,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060391802964908303, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060391802964908305, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4060391802964908306, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
@@ -7098,6 +7106,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060391802964908303, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060391802964908305, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4060391802964908306, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
@@ -9825,6 +9837,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4060391802964908305, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4060391802964908306, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
       propertyPath: m_Name
       value: RunnerGhosts
@@ -11699,6 +11715,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4060391802964908303, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4060391802964908305, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4060391802964908306, guid: a01ec4f3c66d6aa4da594429bc77eab9, type: 3}
