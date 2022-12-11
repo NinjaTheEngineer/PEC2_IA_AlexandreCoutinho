@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 1176938666}
   m_Layer: 0
   m_Name: Elder
-  m_TagString: Untagged
+  m_TagString: Elder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,12 +255,8 @@ MonoBehaviour:
   MinSpeed: 0.5
   _defaultSpeed: 0
   HasFollowers: 0
-  waypoints: []
-  path: {fileID: 0}
-  targetPos: {x: 0, y: 0, z: 0}
-  currentWaypointIndex: 0
-  fetchedWaypoints: 0
   randomPathing: 1
+  Path: {fileID: 0}
 --- !u!114 &8583827257811638146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,13 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ActiveState: {fileID: 0}
-  waypoints: []
   AgentController: {fileID: 0}
-  path: {fileID: 0}
-  targetPos: {x: 0, y: 0, z: 0}
-  goalDistance: 0.5
-  ReachedTargetValue: 0
-  currentWaypointIndex: 0
   NearbyBench: {fileID: 0}
 --- !u!114 &9075345130876429795
 MonoBehaviour:
@@ -294,7 +284,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c4e7540685fe5b4fbf54a2a0b683a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentSpeed: 1
 --- !u!114 &811768863076640598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,7 +296,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02718daa789795469c20a2262e72331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentSpeed: 0
   minSitTime: 7
   maxSitTime: 20
 --- !u!114 &5742588129643214535
@@ -322,7 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b464a03bb2c031745be933a24f060e6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentSpeed: 0
+  minTimeStopped: 2
+  maxTimeStopped: 6
 --- !u!136 &1176938666
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class AgentWithPathController : AgentController {
     public bool randomPathing = false;
@@ -54,6 +53,9 @@ public class AgentWithPathController : AgentController {
     }
     public Vector3 ClosestWaypoint(){
         string logId = "AgentWithPathController_ClosestWaypoint::";
+        if(waypoints==null){
+            return transform.position;
+        }
         int waypointsCount = waypoints.Count;
         if(waypointsCount==0){
             Debug.Log(logId+"There are no waypoints => return targetPosition");
@@ -72,6 +74,9 @@ public class AgentWithPathController : AgentController {
         return closestWaypoint;
     }
     public Vector3 NextWaypoint() {
+        if(waypoints==null) {
+            return transform.position;
+        }
         int waypointsCount = waypoints.Count;
         if(waypointsCount==0) {
             Debug.Log("No waypoints => return targetPosition");

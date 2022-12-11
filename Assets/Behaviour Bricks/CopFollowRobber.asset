@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34a7c8ca992f915438a96c2077353778, type: 3}
+  m_Name: CopFollowRobber
+  m_EditorClassIdentifier: 
+  brickName: Assets/Behaviour Bricks/CopFollowRobber.asset
+  xml: "\uFEFF<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<BehaviorBricks xmlns:ref=\"urn:padaone\"
+    version=\"1.0\">\r\n  <BehaviorTree id=\"0\" />\r\n  <runtimeInfo>\r\n    <BehaviorTree
+    id=\"0\" guid=\"350a438a78c177f4e98ad05d9e0ef721\" nextId=\"48\">\r\n      <root>\r\n       
+    <RepeatDecorator id=\"42\" />\r\n      </root>\r\n      <inputParams>\r\n       
+    <inputValues>\r\n          <entry name=\"robber\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"False\" />\r\n          <entry name=\"robberWallet\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"False\" />\r\n        </inputValues>\r\n      </inputParams>\r\n     
+    <outputParams>\r\n        <outputValues>\r\n          <entry name=\"hasWallet\"
+    type=\"System.Boolean\" isBlackboard=\"True\" />\r\n        </outputValues>\r\n     
+    </outputParams>\r\n      <localParams />\r\n    </BehaviorTree>\r\n    <RepeatDecorator
+    id=\"42\" loops=\"-1\" policy=\"ContinueWhenChildFails\">\r\n      <child>\r\n       
+    <ActionNode id=\"26\" />\r\n      </child>\r\n      <inputParams />\r\n     
+    <outputParams />\r\n      <localParams />\r\n    </RepeatDecorator>\r\n    <ActionNode
+    id=\"26\" action=\"Navigation/MoveToRobber\">\r\n      <inputParams>\r\n       
+    <inputValues>\r\n          <entry name=\"robber\" type=\"UnityEngine.GameObject\"
+    isBlackboard=\"True\" blackboard=\"robber\" />\r\n          <entry name=\"robberWallet\"
+    type=\"UnityEngine.GameObject\" isBlackboard=\"True\" blackboard=\"robberWallet\"
+    />\r\n        </inputValues>\r\n      </inputParams>\r\n      <outputParams>\r\n       
+    <outputValues>\r\n          <entry name=\"hasWallet\" type=\"System.Boolean\"
+    isBlackboard=\"True\" blackboard=\"hasWallet\" />\r\n        </outputValues>\r\n     
+    </outputParams>\r\n      <localParams />\r\n    </ActionNode>\r\n  </runtimeInfo>\r\n 
+    <editorInfo>\r\n    <BehaviorTree id=\"0\" _name=\"CopBehaviour 2\" _description=\"\"
+    _removeIfClosed=\"False\">\r\n      <_rootList>\r\n        <elem>\r\n         
+    <ActionNode id=\"26\" />\r\n        </elem>\r\n        <elem>\r\n          <RepeatDecorator
+    id=\"42\" />\r\n        </elem>\r\n      </_rootList>\r\n      <_nodes>\r\n       
+    <nodes>\r\n          <ActionNode id=\"26\" />\r\n          <RepeatDecorator id=\"42\"
+    />\r\n        </nodes>\r\n      </_nodes>\r\n    </BehaviorTree>\r\n    <RepeatDecorator
+    id=\"42\">\r\n      <_data>\r\n        <data breakpoint=\"0\" selected=\"False\"
+    position=\"572.4963 92.13097\" name=\"Repeat\" description=\"Repeats the execution
+    of its child node\" cardinality=\"1\" hasParent=\"False\">\r\n          <BehaviorTree
+    id=\"0\" />\r\n          <RepeatDecorator id=\"42\" />\r\n        </data>\r\n     
+    </_data>\r\n    </RepeatDecorator>\r\n    <ActionNode id=\"26\">\r\n      <_data>\r\n       
+    <data breakpoint=\"0\" selected=\"True\" position=\"540.5304 268.8282\" name=\"Navigation/MoveToRobber\"
+    description=\"Moves the game object towards a given target by using a NavMeshAgent\"
+    cardinality=\"0\" hasParent=\"True\">\r\n          <BehaviorTree id=\"0\" />\r\n         
+    <RepeatDecorator id=\"42\" />\r\n          <RepeatDecorator id=\"42\" />\r\n       
+    </data>\r\n      </_data>\r\n    </ActionNode>\r\n  </editorInfo>\r\n</BehaviorBricks>"
+  zoom: 0.9
+  subslist:
+  - {fileID: 11400000, guid: 8adfddffa70852a45ba1b64354494e3c, type: 2}
+  - {fileID: 11400000}
+  - {fileID: 11400000, guid: cce97ef26f0784f44abb568e83b1d406, type: 2}
+  _guid: 350a438a78c177f4e98ad05d9e0ef721
